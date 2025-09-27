@@ -1,173 +1,191 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Abhijeet (Abhi) — Self-taught Developer</title>
-  <meta name="description" content="Abhijeet (Abhi) — Self-taught web developer. Wanna make a project together? I never say no to coding." />
-  <meta property="og:title" content="Abhijeet (Abhi) — Self-taught Developer" />
-  <meta property="og:description" content="Wanna create a project with me? I will never say no to coding." />
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Abhi | Portfolio</title>
   <style>
-    :root{
-      --bg1:#0f1724;
-      --bg2:#0b1220;
-      --accent:#7c3aed;
-      --accent-2:#06b6d4;
-      --muted:#9aa4b2;
-      --glass: rgba(255,255,255,0.04);
+    /* Reset + Theme */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      background: linear-gradient(180deg,var(--bg1),var(--bg2));
-      color:#e6eef6;
-      overflow-x:hidden;
+
+    body {
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      color: #f8fafc;
+      line-height: 1.6;
+      overflow-x: hidden;
     }
-    .bg {
-      position:fixed; inset:0; z-index:0; pointer-events:none;
-      background:
-        radial-gradient(circle at 10% 10%, rgba(124,58,237,0.06) 0 2px, transparent 2px),
-        radial-gradient(circle at 80% 30%, rgba(6,182,212,0.04) 0 2px, transparent 2px);
-      background-size: 1200px 800px;
-      animation: bgshift 18s linear infinite;
+
+    header {
+      text-align: center;
+      padding: 100px 20px 60px;
+      animation: fadeDown 1.5s ease-in-out;
     }
-    @keyframes bgshift {
-      from { background-position: 0 0, 0 0; }
-      to { background-position: -800px -400px, 800px 400px; }
+
+    header h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      background: linear-gradient(to right, #38bdf8, #a78bfa);
+      -webkit-background-clip: text;
+      color: transparent;
     }
-    .wrap{ max-width:1100px; margin:40px auto; padding:28px; position:relative; z-index:1; }
-    header{ display:flex; align-items:center; justify-content:space-between; margin-bottom:28px; }
-    .brand{ display:flex; gap:14px; align-items:center; }
-    .logo{ width:56px; height:56px; border-radius:12px;
-      background: linear-gradient(135deg,var(--accent),var(--accent-2));
-      display:flex; align-items:center; justify-content:center;
-      font-weight:700; font-size:20px; color:white; }
-    .title h2{ margin:0; font-size:18px; }
-    .title p{ margin:0; font-size:12px; color:var(--muted) }
-    nav{ display:flex; gap:10px; }
-    a.cta{ background: linear-gradient(90deg,var(--accent),var(--accent-2));
-      padding:10px 14px; border-radius:10px; color:white; text-decoration:none; font-weight:600; }
-    a.ghost{ color:var(--muted); font-size:14px; text-decoration:none; }
-    .hero{ display:grid; grid-template-columns:1fr 380px; gap:28px; align-items:center; margin-top:18px; }
-    .card{ background:rgba(255,255,255,0.02); border-radius:14px; padding:26px; }
-    .intro h1{ margin:0 0 8px 0; font-size:32px; }
-    .typed{ font-weight:600; color:#fff; font-size:18px; min-height:26px; }
-    .blurb{ color:var(--muted); margin-top:12px; font-size:14px; }
-    .side { display:flex; flex-direction:column; gap:12px; }
-    .avatar{ width:86px; height:86px; border-radius:14px;
-      background: linear-gradient(180deg,#e9d5ff,#c7f9ff);
-      display:flex; align-items:center; justify-content:center;
-      color:#0b1220; font-weight:800; font-size:28px; }
-    .small{ font-size:13px; color:var(--muted); }
-    .projects{ display:grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap:14px; margin-top:22px; }
-    .project{ padding:14px; border-radius:12px; background:var(--glass); }
-    .project h4{ margin:0 0 6px 0; font-size:16px; }
-    .badge{ padding:6px 8px; border-radius:999px; font-weight:700; font-size:12px; }
-    .live{ color:#00ffb3; background:rgba(0,255,179,0.07); }
-    .soon{ color:#ffd166; background:rgba(255,209,102,0.06); }
-    .work{ color:#7c3aed; background:rgba(124,58,237,0.06); }
-    footer{ margin-top:34px; display:flex; justify-content:space-between; align-items:center; gap:12px; color:var(--muted); font-size:13px; }
-    @media (max-width:880px){ .hero{ grid-template-columns:1fr; } }
+
+    header p {
+      font-size: 1.3rem;
+      margin-top: 15px;
+      color: #cbd5e1;
+    }
+
+    /* Typing effect */
+    .typing {
+      margin-top: 25px;
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: #94a3b8;
+      border-right: 2px solid #38bdf8;
+      white-space: nowrap;
+      overflow: hidden;
+      width: 24ch;
+      animation: typing 3s steps(24) infinite alternate, blink 0.8s step-end infinite;
+    }
+
+    @keyframes typing {
+      0% { width: 0ch; }
+      50% { width: 24ch; }
+      100% { width: 0ch; }
+    }
+
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+
+    /* Section */
+    section {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 60px 20px;
+    }
+
+    section h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      border-left: 4px solid #38bdf8;
+      padding-left: 10px;
+      color: #f1f5f9;
+    }
+
+    .skills, .projects, .contact {
+      background: rgba(255,255,255,0.05);
+      border-radius: 16px;
+      padding: 30px;
+      margin-bottom: 40px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease;
+    }
+
+    .skills:hover, .projects:hover, .contact:hover {
+      transform: translateY(-5px);
+    }
+
+    .skills ul, .projects ul {
+      list-style: none;
+      margin-top: 15px;
+    }
+
+    .skills li, .projects li {
+      margin: 10px 0;
+      padding-left: 10px;
+      position: relative;
+    }
+
+    .skills li::before, .projects li::before {
+      content: "▹";
+      position: absolute;
+      left: -15px;
+      color: #38bdf8;
+    }
+
+    /* Contact button */
+    .contact a {
+      display: inline-block;
+      padding: 12px 25px;
+      margin-top: 15px;
+      background: linear-gradient(135deg, #38bdf8, #a78bfa);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    .contact a:hover {
+      opacity: 0.9;
+      transform: scale(1.05);
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      font-size: 0.9rem;
+      color: #94a3b8;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    @keyframes fadeDown {
+      0% { transform: translateY(-50px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
   </style>
 </head>
 <body>
-  <div class="bg"></div>
-  <main class="wrap">
-    <header>
-      <div class="brand">
-        <div class="logo">Ab</div>
-        <div class="title">
-          <h2>Abhijeet <span style="opacity:.7">/ Abhi</span></h2>
-          <p class="small">Self-taught developer • hobbyist • problem solver</p>
-        </div>
-      </div>
-      <nav>
-        <a class="ghost" href="#projects">Projects</a>
-        <a class="ghost" href="#contact">Contact</a>
-        <a class="cta" href="#contact">Wanna build with me?</a>
-      </nav>
-    </header>
 
-    <section class="hero">
-      <div class="card intro">
-        <h1>Hi, I'm <strong>Abhijeet</strong> — call me <strong>Abhi</strong></h1>
-        <div class="typed" id="typed">Self-taught developer</div>
-        <p class="blurb">I learn by doing. I never say no to coding projects. Wanna be friends with a techie like me? Let’s build!</p>
-        <div style="margin-top:16px; display:flex; gap:10px;">
-          <a class="cta" href="#projects">Peek my projects</a>
-          <a class="ghost" href="#contact">Say hi</a>
-        </div>
-      </div>
+  <!-- Hero -->
+  <header>
+    <h1>Hey, I'm Abhi 👋</h1>
+    <p>A self-learned developer exploring the world of tech 🚀</p>
+    <p class="typing">11th Class | Python | JS | CSS</p>
+  </header>
 
-      <aside class="side card">
-        <div class="avatar">AB</div>
-        <div>
-          <div style="font-weight:700">Abhijeet (Abhi)</div>
-          <div class="small">Web • Frontend • Animations</div>
-        </div>
-        <div style="margin-top:12px;">
-          <div class="small">Quick link</div>
-          <a class="ghost" href="https://instagram.com/__abhiiii_92" target="_blank">Instagram</a>
-        </div>
-      </aside>
-    </section>
+  <!-- Skills -->
+  <section>
+    <div class="skills">
+      <h2>What I’m Learning</h2>
+      <ul>
+        <li>Python – basics, small scripts, problem solving</li>
+        <li>JavaScript – fundamentals, DOM, interactivity</li>
+        <li>CSS – layouts, styling, still in progress 🎨</li>
+        <li>Exploring web development projects step by step</li>
+      </ul>
+    </div>
 
-    <section id="projects" style="margin-top:26px">
-      <h3>My Little Projects</h3>
-      <div class="projects">
-        <div class="project">
-          <h4>https://confession-abhi.vercel.app/ </h4>
-          <div class="badge live">Live</div>
-        </div>
-        <div class="project">
-          <h4>Song Lines</h4>
-          <div class="badge soon">Coming soon</div>
-        </div>
-        <div class="project">
-          <h4>Mini Player</h4>
-          <div class="badge work">In dev</div>
-        </div>
-      </div>
-    </section>
+    <!-- Projects -->
+    <div class="projects">
+      <h2>My Projects</h2>
+      <ul>
+        <li>Small practice sites – still in development ⚡</li>
+        <li>Portfolio experiments – coming soon 🔧</li>
+        <li>Future collabs – always open to build & learn</li>
+      </ul>
+    </div>
 
-    <footer id="contact">
-      <div>
-        <strong>Wanna create a project with me?</strong>
-        <div>I will never say no to coding — let's build together.</div>
-      </div>
-      <div>
-        <a class="ghost" href="https://instagram.com/__abhiiii_92" target="_blank">@__abhiiii_92</a>
-        <span style="margin-left:10px;">© Abhijeet (Abhi)</span>
-      </div>
-    </footer>
-  </main>
+    <!-- Contact -->
+    <div class="contact">
+      <h2>Let’s Connect</h2>
+      <p>Wanna build something cool with me? I’ll never say no to coding and tech collabs.</p>
+      <a href="https://instagram.com/__abhiiii_92" target="_blank">📸 Connect on Instagram</a>
+    </div>
+  </section>
 
-  <script>
-    const phrases = [
-      "Self-taught developer",
-      "I build small, useful web things",
-      "Animations • UI • Tiny hacks",
-      "Let's make something together"
-    ];
-    const typedEl = document.getElementById('typed');
-    let p=0, ch=0, typing=true;
-    function loop(){
-      let text=phrases[p];
-      if(typing){
-        if(ch<=text.length){
-          typedEl.textContent=text.slice(0,ch++);
-          setTimeout(loop,70);
-        }else{ typing=false; setTimeout(loop,1000);}
-      }else{
-        if(ch>=0){
-          typedEl.textContent=text.slice(0,ch--);
-          setTimeout(loop,30);
-        }else{ typing=true; p=(p+1)%phrases.length; setTimeout(loop,300);}
-      }
-    }
-    loop();
-  </script>
+  <!-- Footer -->
+  <footer>
+    © 2025 Crafted with ❤️ by Abhi
+  </footer>
+
 </body>
-</html>
+</html>   
