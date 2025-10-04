@@ -1,288 +1,288 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Abhi | Portfolio</title>
   <style>
-    /* Base / reset */
-    :root{
-      --bg-start:#0f172a;
-      --bg-end:#1e293b;
-      --accent-a:#38bdf8;
-      --accent-b:#a78bfa;
-      --glass: rgba(255,255,255,0.05);
-      --muted:#94a3b8;
-      --text:#f8fafc;
-      --card-shadow: 0 10px 30px rgba(2,6,23,0.6);
-      --card-shadow-hover: 0 20px 45px rgba(2,6,23,0.7);
-      --radius:14px;
-    }
-    *{box-sizing:border-box;margin:0;padding:0}
-    html,body{height:100%}
-    body{
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg,var(--bg-start),var(--bg-end));
-      color:var(--text);
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      overflow-y:auto;
-      line-height:1.5;
-      -webkit-tap-highlight-color: transparent;
+    /* Reset + Theme */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
-    /* Page container */
-    .wrap{
-      max-width:980px;
-      margin: 36px auto 80px;
-      padding: 28px;
-      display:block;
+    body {
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      color: #f8fafc;
+      line-height: 1.6;
+      overflow-x: hidden;
     }
 
     /* Header */
-    header{
-      text-align:center;
-      margin: 34px 12px 28px;
-      padding: 40px 22px;
-      border-radius: calc(var(--radius) + 6px);
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      box-shadow: var(--card-shadow);
-      backdrop-filter: blur(8px) saturate(1.05);
-      transition: transform .45s cubic-bezier(.2,.9,.2,1), box-shadow .3s;
-    }
-    header:hover{ transform: translateY(-4px); box-shadow: var(--card-shadow-hover) }
-
-    header h1{
-      font-size: 3.25rem;
-      font-weight:700;
-      letter-spacing:1px;
-      margin-bottom:10px;
-      line-height:1;
-      background: linear-gradient(90deg,var(--accent-a), var(--accent-b));
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
-    }
-    header p{ color: var(--muted); font-size:1.05rem; margin-bottom:8px }
-    .typing{
-      display:inline-block;
-      margin-top:10px;
-      color:var(--muted);
-      font-weight:500;
-      border-right:2px solid var(--accent-a);
-      padding-right:6px;
-      white-space:nowrap;
-      overflow:hidden;
-      width:28ch;
-      animation: typing 3.6s steps(28) infinite alternate, blink .9s step-end infinite;
-    }
-    @keyframes typing{ 0%{width:0ch} 50%{width:28ch} 100%{width:0ch} }
-    @keyframes blink{50%{border-color:transparent}}
-
-    /* Sections (glass cards) */
-    section{ margin-top:28px }
-    .card{
-      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
-      border-radius: var(--radius);
-      padding: 26px;
-      margin-bottom: 22px;
-      box-shadow: var(--card-shadow);
-      border: 1px solid rgba(255,255,255,0.04);
-      backdrop-filter: blur(8px) saturate(1.02);
-      transition: transform .35s ease, box-shadow .35s ease;
-      opacity:0;
-      transform: translateY(20px);
-    }
-    .card.visible{ opacity:1; transform:none }
-
-    .card:hover{ transform: translateY(-8px); box-shadow: var(--card-shadow-hover) }
-
-    h2{
-      font-size:1.6rem;
-      margin-bottom:12px;
-      color:var(--text);
-      padding-left:8px;
-      border-left:4px solid var(--accent-a);
+    header {
+      text-align: center;
+      padding: 100px 20px 60px;
+      animation: fadeDown 1.5s ease-in-out;
     }
 
-    /* Skills list (keeps original text) */
-    .skills ul{ list-style:none; margin-top:12px; padding-left:0 }
-    .skills li{
-      position:relative;
-      padding-left:18px;
-      margin:9px 0;
-      color:var(--text);
-    }
-    .skills li::before{
-      content:"▹";
-      position:absolute;
-      left:0;
-      top:0;
-      color:var(--accent-a);
-    }
-    .skills p.small{ color:var(--muted); margin-top:8px }
-
-    /* Projects list & link button */
-    .projects ul{ list-style:none; margin-top:12px; padding-left:0 }
-    .projects li{ margin:10px 0; padding-left:18px; color:var(--text) }
-    .projects li::before{ content:"▹"; position:absolute; left:0; color:var(--accent-a) }
-
-    .project-link{
-      display:inline-block;
-      padding:10px 16px;
-      border-radius:10px;
-      text-decoration:none;
-      color:var(--text);
-      background: linear-gradient(135deg,var(--accent-a), var(--accent-b));
-      font-weight:600;
-      box-shadow: 0 6px 18px rgba(56,189,248,0.14);
-      transition: transform .24s ease, box-shadow .24s ease, opacity .24s;
-      margin-left:6px;
-    }
-    .project-link:hover{ transform: translateY(-4px) scale(1.02); box-shadow: 0 14px 30px rgba(167,139,250,0.12) }
-
-    /* Writer special button (prominent, but same palette) */
-    .writer-btn{
-      display:inline-block;
-      margin-top:18px;
-      padding:12px 22px;
-      border-radius:12px;
-      color:var(--text);
-      text-decoration:none;
-      font-weight:700;
-      background: linear-gradient(90deg, rgba(167,139,250,0.95), rgba(56,189,248,0.95));
-      box-shadow: 0 12px 30px rgba(56,189,248,0.12);
-      border: 1px solid rgba(255,255,255,0.04);
-      transition: transform .28s ease, box-shadow .28s ease, opacity .28s;
-      display:inline-flex;
-      gap:10px;
-      align-items:center;
-    }
-    .writer-btn .star{ font-size:1.05rem; opacity:.95 }
-    .writer-btn:hover{ transform: translateY(-6px) scale(1.02); box-shadow: 0 22px 45px rgba(56,189,248,0.17) }
-
-    /* Note block (unchanged text) */
-    .note{
-      text-align:center;
-      padding:18px;
-      border-radius:12px;
-      background:var(--glass);
-      color:var(--muted);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.32);
-      margin:6px 0 20px;
-      border:1px solid rgba(255,255,255,0.03);
+    header h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      background: linear-gradient(to right, #38bdf8, #a78bfa);
+      -webkit-background-clip: text;
+      color: transparent;
     }
 
-    /* Contact */
-    .contact p{ color:var(--text) }
-    .contact a{
-      display:inline-block;
-      margin-top:10px;
-      padding:10px 18px;
-      border-radius:10px;
-      background: linear-gradient(135deg,var(--accent-a), var(--accent-b));
-      color:white;
-      text-decoration:none;
-      font-weight:600;
-      transition: transform .24s, box-shadow .24s;
-      box-shadow: 0 8px 22px rgba(0,0,0,0.28);
-    }
-    .contact a:hover{ transform: translateY(-4px); box-shadow: 0 16px 36px rgba(0,0,0,0.36) }
-
-    /* Footer */
-    footer{
-      text-align:center;
-      margin-top:24px;
-      color:var(--muted);
-      font-size:0.95rem;
-      padding:22px 4px 60px;
-      opacity:.95;
+    header p {
+      font-size: 1.3rem;
+      margin-top: 15px;
+      color: #cbd5e1;
     }
 
-    /* small responsive */
-    @media (max-width:720px){
-      header{ padding:28px 14px }
-      header h1{ font-size:2.2rem }
-      .wrap{ padding:12px }
-      .writer-btn{ padding:10px 14px; font-size:.95rem }
+    /* Typing effect */
+    .typing {
+      margin-top: 25px;
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: #94a3b8;
+      border-right: 2px solid #38bdf8;
+      white-space: nowrap;
+      overflow: hidden;
+      width: 24ch;
+      animation: typing 3s steps(24) infinite alternate, blink 0.8s step-end infinite;
+    }
+
+    @keyframes typing {
+      0% { width: 0ch; }
+      50% { width: 24ch; }
+      100% { width: 0ch; }
+    }
+
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+
+    /* Section */
+    section {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 60px 20px;
+    }
+
+    section h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      border-left: 4px solid #38bdf8;
+      padding-left: 10px;
+      color: #f1f5f9;
+    }
+
+    .skills, .projects, .contact {
+      background: rgba(255,255,255,0.05);
+      border-radius: 16px;
+      padding: 30px;
+      margin-bottom: 40px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    /* Fade in animation when visible */
+    .visible {
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .skills:hover, .projects:hover, .contact:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+
+    .skills ul, .projects ul {
+      list-style: none;
+      margin-top: 15px;
+    }
+
+    .skills li, .projects li {
+      margin: 10px 0;
+      padding-left: 10px;
+      position: relative;
+    }
+
+    .skills li::before, .projects li::before {
+      content: "▹";
+      position: absolute;
+      left: -15px;
+      color: #38bdf8;
+    }
+
+    /* Project links (button-like) */
+    .projects a {
+      display: inline-block;
+      padding: 12px 18px;
+      margin: 8px 0;
+      background: linear-gradient(135deg, #38bdf8, #a78bfa);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: 0.3s;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+      position: relative;
+    }
+
+    .projects a::after {
+      content: " ↗";
+      font-size: 1rem;
+    }
+
+    .projects a:hover {
+      opacity: 0.95;
+      transform: scale(1.07);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+    }
+
+    /* Special Writer Button */
+    .writer-btn {
+      display: inline-block;
+      margin-top: 25px;
+      padding: 14px 28px;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #fff;
+      background: linear-gradient(135deg, #a78bfa, #38bdf8);
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+    }
+
+    .writer-btn:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 8px 28px rgba(0,0,0,0.35);
+      opacity: 0.95;
+    }
+
+    /* Contact button */
+    .contact a {
+      display: inline-block;
+      padding: 12px 25px;
+      margin-top: 15px;
+      background: linear-gradient(135deg, #38bdf8, #a78bfa);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    .contact a:hover {
+      opacity: 0.9;
+      transform: scale(1.05);
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      font-size: 0.9rem;
+      color: #94a3b8;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    @keyframes fadeDown {
+      0% { transform: translateY(-50px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
     }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <!-- Header (kept captions identical) -->
-    <header>
-      <h1>Hey, I'm Abhi 👋</h1>
-      <p>A self-learned developer exploring the world of tech 🚀</p>
-      <div class="typing">11th grader | Python | JS | CSS</div>
-    </header>
 
-    <!-- Skills (card) -->
-    <section>
-      <div class="card skills" id="skillsCard">
-        <h2>What I’m Learning</h2>
-        <ul>
-          <li>Python – basics, small scripts, problem solving</li>
-          <li>JavaScript – fundamentals, DOM, interactivity</li>
-          <li>CSS – layouts, styling, still in progress 🎨</li>
-          <li>Exploring web development projects step by step</li>
-        </ul>
-        <p class="small" style="margin-top:12px;color:var(--muted)">
-        
-        </p>
-      </div>
+  <!-- Hero -->
+  <header>
+    <h1>Hey, I'm Abhi 👋</h1>
+    <p>A self-learned developer exploring the world of tech 🚀</p>
+    <p class="typing">11th grader | Python | JS | CSS</p>
+  </header>
 
-      <!-- Projects (card) -->
-      <div class="card projects" id="projectsCard">
-        <h2>My Projects</h2>
-        <ul>
-          <li>
-            🚀 Truth Theta
-            <a class="project-link" href="https://truth-theta.vercel.app/" target="_blank" rel="noreferrer">(click here)</a>
-          </li>
-          <li style="margin-top:10px">🔒 Some private projects (not public yet)</li>
-          <li style="margin-top:8px">🔧 More projects in development…</li>
-        </ul>
+  <!-- Skills -->
+  <section>
+    <div class="skills">
+      <h2>What I’m Learning</h2>
+      <ul>
+        <li>Python – basics, small scripts, problem solving</li>
+        <li>JavaScript – fundamentals, DOM, interactivity</li>
+        <li>CSS – layouts, styling, still in progress 🎨</li>
+        <li>Exploring web development projects step by step</li>
+      </ul>
+    </div>
 
-        <!-- Writer’s Tool Button (keeps palette and fits design) -->
-        <div style="margin-top:16px">
-          <a class="writer-btn" href="https://abhi-quote.vercel.app/" target="_blank" rel="noreferrer">
-            <span class="star">✍️</span>
-            <span>Explore Abhi Quotes — Inspiration for writers</span>
-            <span style="opacity:.9; font-size:.95rem; margin-left:6px">✨</span>
-          </a>
-        </div>
-      </div>
+    <!-- Projects -->
+    <div class="projects">
+      <h2>My Projects</h2>
+      <ul>
+        <li>
+          <a href="https://truth-theta.vercel.app/" target="_blank">🚀 Truth Theta</a>
+        </li>
+        <li>🔒 Some private projects (not public yet)</li>
+        <li>🔧 More projects in development…</li>
+      </ul>
 
-      <!-- Note (card) -->
-      <div class="card note" id="noteCard" style="text-align:center">
-        <p style="font-size:1rem; color:var(--muted); line-height:1.6;">
-          ⚡ note: some websites are already completed — more are in development, infos coming soon as other projects finish  
-          <br>~abhijeet / abhi 🙂
-        </p>
-      </div>
+      <!-- Writer’s Tool Button -->
+      <a href="https://abhi-quote.vercel.app/" target="_blank" class="writer-btn">
+        ✍️ Explore Abhi Quotes – Inspiration for Writers
+      </a>
+    </div>
 
-      <!-- Contact (card) -->
-      <div class="card contact" id="contactCard" style="text-align:center">
-        <h2>Let’s Connect</h2>
-        <p>Wanna build something cool with me? I’ll never say no to coding.</p>
-        <a href="https://instagram.com/__abhiiii_92" target="_blank" rel="noreferrer">📸 Connect on Instagram</a>
-      </div>
-    </section>
+    <!-- Note Section -->
+    <div class="note" style="
+      background: rgba(255,255,255,0.05);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 40px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+      text-align: center;
+    ">
+      <p style="font-size: 1rem; color: #94a3b8; line-height: 1.6;">
+        ⚡ note: some websites are already completed — more are in development, infos coming soon as other projects finish  
+        <br>~abhijeet / abhi 🙂
+      </p>
+    </div>
 
-    <footer>© 2025 Crafted with ❤️ by Abhi</footer>
-  </div>
+    <!-- Contact -->
+    <div class="contact">
+      <h2>Let’s Connect</h2>
+      <p>Wanna build something cool with me? I’ll never say no to coding.</p>
+      <a href="https://instagram.com/__abhiiii_92" target="_blank">📸 Connect on Instagram</a>
+    </div>
+  </section>
 
-  <!-- Intersection Observer for subtle reveal -->
+  <!-- Footer -->
+  <footer>
+    © 2025 Crafted with ❤️ by Abhi
+  </footer>
+
+  <!-- Scroll animation script -->
   <script>
-    (function(){
-      const cards = document.querySelectorAll('.card');
-      const io = new IntersectionObserver((entries)=>{
-        entries.forEach(e=>{
-          if(e.isIntersecting) e.target.classList.add('visible');
-        });
-      }, {threshold:0.18});
-      cards.forEach(c=> io.observe(c));
-    })();
+    const sections = document.querySelectorAll('.skills, .projects, .contact');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.2 });
+
+    sections.forEach(section => observer.observe(section));
   </script>
+
 </body>
 </html>
