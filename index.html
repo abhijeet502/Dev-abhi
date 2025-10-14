@@ -171,11 +171,11 @@
       opacity: 0.95;
     }
 
-    /* Contact button */
+    /* Contact buttons */
     .contact a {
       display: inline-block;
       padding: 12px 25px;
-      margin-top: 15px;
+      margin: 10px;
       background: linear-gradient(135deg, #38bdf8, #a78bfa);
       color: #fff;
       text-decoration: none;
@@ -187,6 +187,14 @@
     .contact a:hover {
       opacity: 0.9;
       transform: scale(1.05);
+    }
+
+    .contact .button-group {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 15px;
     }
 
     footer {
@@ -261,7 +269,10 @@
     <div class="contact">
       <h2>Let’s Connect</h2>
       <p>Wanna build something cool with me? I’ll never say no to coding.</p>
-      <a href="https://instagram.com/__abhiiii_92" target="_blank">📸 Connect on Instagram</a>
+      <div class="button-group">
+        <a href="https://instagram.com/__abhiiii_92" target="_blank">📸 Connect on Instagram</a>
+        <a href="https://instagram.com/_abhijeet_92" target="_blank">📸 Connect on Instagram (Main)</a>
+      </div>
     </div>
   </section>
 
