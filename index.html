@@ -5,88 +5,304 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Abhi | Portfolio</title>
   <style>
-    /* Keep your entire existing CSS (unchanged) */
-    *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;}
-    body{background:linear-gradient(135deg,#0f172a,#1e293b);color:#f8fafc;line-height:1.6;overflow-x:hidden;}
-    header{text-align:center;padding:100px 20px 60px;animation:fadeDown 1.5s ease-in-out;}
-    header h1{font-size:3.5rem;font-weight:700;letter-spacing:2px;background:linear-gradient(to right,#38bdf8,#a78bfa);-webkit-background-clip:text;color:transparent;}
-    header p{font-size:1.3rem;margin-top:15px;color:#cbd5e1;}
-    .typing{margin-top:25px;font-size:1.2rem;font-weight:500;color:#94a3b8;border-right:2px solid #38bdf8;white-space:nowrap;overflow:hidden;width:24ch;animation:typing 3s steps(24) infinite alternate,blink .8s step-end infinite;}
-    @keyframes typing{0%{width:0ch;}50%{width:24ch;}100%{width:0ch;}}@keyframes blink{50%{border-color:transparent;}}
-    section{max-width:900px;margin:0 auto;padding:60px 20px;}
-    section h2{font-size:2rem;margin-bottom:20px;border-left:4px solid #38bdf8;padding-left:10px;color:#f1f5f9;}
-    .skills,.projects,.contact{background:rgba(255,255,255,0.05);border-radius:16px;padding:30px;margin-bottom:40px;backdrop-filter:blur(12px);box-shadow:0 8px 25px rgba(0,0,0,0.3);transition:.3s ease;opacity:0;transform:translateY(30px);}
-    .visible{opacity:1!important;transform:translateY(0)!important;transition:opacity .8s ease,transform .8s ease;}
-    .skills:hover,.projects:hover,.contact:hover{transform:translateY(-5px);box-shadow:0 10px 30px rgba(0,0,0,0.4);}
-    .skills ul,.projects ul{list-style:none;margin-top:15px;}
-    .skills li,.projects li{margin:10px 0;padding-left:10px;position:relative;}
-    .skills li::before,.projects li::before{content:"▹";position:absolute;left:-15px;color:#38bdf8;}
-    .projects a{display:inline-block;padding:12px 18px;margin:8px 0;background:linear-gradient(135deg,#38bdf8,#a78bfa);color:#fff;text-decoration:none;border-radius:8px;font-weight:600;transition:.3s;box-shadow:0 4px 15px rgba(0,0,0,0.25);position:relative;}
-    .projects a::after{content:" ↗";font-size:1rem;}
-    .projects a:hover{opacity:.95;transform:scale(1.07);box-shadow:0 6px 18px rgba(0,0,0,0.35);}
-    .writer-btn{display:inline-block;margin-top:25px;padding:14px 28px;font-size:1.05rem;font-weight:600;color:#fff;background:linear-gradient(135deg,#a78bfa,#38bdf8);border:none;border-radius:10px;cursor:pointer;transition:.3s;text-decoration:none;box-shadow:0 6px 20px rgba(0,0,0,0.25);}
-    .writer-btn:hover{transform:translateY(-3px) scale(1.05);box-shadow:0 8px 28px rgba(0,0,0,0.35);opacity:.95;}
-    .contact a{display:inline-block;padding:12px 25px;margin:10px;background:linear-gradient(135deg,#38bdf8,#a78bfa);color:#fff;text-decoration:none;border-radius:8px;font-weight:600;transition:.3s;}
-    .contact a:hover{opacity:.9;transform:scale(1.05);}
-    .contact .button-group{display:flex;justify-content:center;flex-wrap:wrap;gap:15px;margin-top:15px;}
-    footer{text-align:center;padding:30px;font-size:.9rem;color:#94a3b8;border-top:1px solid rgba(255,255,255,0.1);}
-    @keyframes fadeDown{0%{transform:translateY(-50px);opacity:0;}100%{transform:translateY(0);opacity:1;}}
-    #realTimeGreeting{font-size:1.1rem;font-weight:500;color:#60a5fa;margin-top:20px;}
-    #launch-animation{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(255,255,255,0.1);border:1px solid #38bdf8;backdrop-filter:blur(10px);color:#f8fafc;padding:20px 30px;border-radius:12px;font-size:1.3rem;font-weight:600;z-index:3000;box-shadow:0 10px 30px rgba(0,0,0,0.5);opacity:0;visibility:hidden;transition:opacity .3s ease;}
-    #launch-animation.show{opacity:1;visibility:visible;}
+    /* Reset + Theme */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
 
-    /* === DIWALI POPUP === */
-    #diwaliPopup {
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0, 0, 0, 0.8);
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      color: #fff;
-      z-index: 5000;
-      animation: fadeIn 1s ease;
+    body {
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      color: #f8fafc;
+      line-height: 1.6;
+      overflow-x: hidden;
     }
-    #diwaliPopup h1 {
-      font-size: 3rem;
-      color: #ff8fab;
-      text-shadow: 0 0 15px #ff4da6;
-      margin-bottom: 10px;
+
+    /* Header */
+    header {
+      text-align: center;
+      padding: 100px 20px 60px;
+      animation: fadeDown 1.5s ease-in-out;
     }
-    #diwaliPopup p {
+
+    header h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      background: linear-gradient(to right, #38bdf8, #a78bfa);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    header p {
+      font-size: 1.3rem;
+      margin-top: 15px;
+      color: #cbd5e1;
+    }
+
+    .typing {
+      margin-top: 25px;
       font-size: 1.2rem;
-      margin: 6px 0;
+      font-weight: 500;
+      color: #94a3b8;
+      border-right: 2px solid #38bdf8;
+      white-space: nowrap;
+      overflow: hidden;
+      width: 24ch;
+      animation: typing 3s steps(24) infinite alternate, blink 0.8s step-end infinite;
     }
-    #closePopup {
+
+    @keyframes typing {
+      0% { width: 0ch; }
+      50% { width: 24ch; }
+      100% { width: 0ch; }
+    }
+
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+
+    section {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 60px 20px;
+    }
+
+    section h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      border-left: 4px solid #38bdf8;
+      padding-left: 10px;
+      color: #f1f5f9;
+    }
+
+    .skills, .projects, .contact {
+      background: rgba(255,255,255,0.05);
+      border-radius: 16px;
+      padding: 30px;
+      margin-bottom: 40px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    .visible {
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .skills:hover, .projects:hover, .contact:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+
+    .skills ul, .projects ul {
+      list-style: none;
+      margin-top: 15px;
+    }
+
+    .skills li, .projects li {
+      margin: 10px 0;
+      padding-left: 10px;
+      position: relative;
+    }
+
+    .skills li::before, .projects li::before {
+      content: "▹";
       position: absolute;
-      top: 20px; right: 25px;
-      font-size: 1.5rem;
-      background: none;
-      border: none;
+      left: -15px;
+      color: #38bdf8;
+    }
+
+    .projects a {
+      display: inline-block;
+      padding: 12px 18px;
+      margin: 8px 0;
+      background: linear-gradient(135deg, #38bdf8, #a78bfa);
       color: #fff;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: 0.3s;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+      position: relative;
+    }
+
+    .projects a::after {
+      content: " ↗";
+      font-size: 1rem;
+    }
+
+    .projects a:hover {
+      opacity: 0.95;
+      transform: scale(1.07);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+    }
+
+    .writer-btn {
+      display: inline-block;
+      margin-top: 25px;
+      padding: 14px 28px;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #fff;
+      background: linear-gradient(135deg, #a78bfa, #38bdf8);
+      border: none;
+      border-radius: 10px;
       cursor: pointer;
-      transition: transform .3s;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.25);
     }
-    #closePopup:hover { transform: scale(1.2); color: #ffb6c1; }
-    canvas#fireworksCanvas {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      pointer-events: none;
-      z-index: -1;
+
+    .writer-btn:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 8px 28px rgba(0,0,0,0.35);
+      opacity: 0.95;
     }
-    @keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
-    @keyframes fadeOut { from {opacity:1;} to {opacity:0;} }
+
+    .contact a {
+      display: inline-block;
+      padding: 12px 25px;
+      margin: 10px;
+      background: linear-gradient(135deg, #38bdf8, #a78bfa);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    .contact a:hover {
+      opacity: 0.9;
+      transform: scale(1.05);
+    }
+
+    .contact .button-group {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 15px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      font-size: 0.9rem;
+      color: #94a3b8;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    @keyframes fadeDown {
+      0% { transform: translateY(-50px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+
+    #realTimeGreeting {
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: #60a5fa; 
+      margin-top: 20px;
+      opacity: 1;
+    }
+
+    #launch-animation {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid #38bdf8;
+      backdrop-filter: blur(10px);
+      color: #f8fafc;
+      padding: 20px 30px;
+      border-radius: 12px;
+      font-size: 1.3rem;
+      font-weight: 600;
+      z-index: 3000;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease;
+    }
+    #launch-animation.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* ✨ DIWALI POPUP ✨ */
+    #diwali-popup {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(15, 23, 42, 0.95);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      z-index: 4000;
+      animation: fadeIn 1s ease forwards;
+    }
+
+    #diwali-popup h1 {
+      font-size: 2.8rem;
+      background: linear-gradient(to right, #facc15, #f472b6, #38bdf8);
+      -webkit-background-clip: text;
+      color: transparent;
+      animation: pulse 2s infinite;
+    }
+
+    #diwali-popup p {
+      margin-top: 10px;
+      font-size: 1.2rem;
+      color: #e2e8f0;
+    }
+
+    #close-popup {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: linear-gradient(135deg, #38bdf8, #a78bfa);
+      border: none;
+      color: white;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    #close-popup:hover {
+      transform: scale(1.1);
+      opacity: 0.9;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
   </style>
 </head>
 <body>
 
   <!-- Diwali Popup -->
-  <div id="diwaliPopup">
-    <canvas id="fireworksCanvas"></canvas>
-    <button id="closePopup">✖</button>
-    <h1>🎆 Happy Diwali 🎇</h1>
-    <p>Best and warm wishes from Abhijeet 💖</p>
-    <p>The development projects are just getting their final touch 😉</p>
+  <div id="diwali-popup">
+    <h1>🎆 Happy Diwali ✨</h1>
+    <p>Wishing you joy, light & prosperity.<br>Best and warm wishes by Abhijeet 💖</p>
+    <button id="close-popup">❌ Close</button>
   </div>
 
   <div id="launch-animation">🚀 Launching project...</div>
@@ -119,8 +335,8 @@
       <a href="https://abhi-quote.vercel.app/" target="_blank" class="writer-btn project-link">✍️ Explore Abhi Quotes!!</a>
     </div>
 
-    <div class="note" style="background:rgba(255,255,255,0.05);border-radius:16px;padding:20px;margin-bottom:40px;backdrop-filter:blur(12px);box-shadow:0 8px 25px rgba(0,0,0,0.3);text-align:center;">
-      <p style="font-size:1rem;color:#94a3b8;line-height:1.6;">
+    <div class="note" style="background: rgba(255,255,255,0.05);border-radius: 16px;padding: 20px;margin-bottom: 40px;backdrop-filter: blur(12px);box-shadow: 0 8px 25px rgba(0,0,0,0.3);text-align: center;">
+      <p style="font-size: 1rem; color: #94a3b8; line-height: 1.6;">
         ⚡ note: Quick maintenance break ⛓️‍💥 Adding new features and working on web stability—11th grader on the job, bruhh 🫡. This will go on for 5 to 6 hours, started from 3:00 PM..!<br>~abhijeet / abhi 🙂
       </p>
     </div>
@@ -138,40 +354,36 @@
   <footer>© 2025 Crafted with ❤️ by Abhi</footer>
 
   <script>
-    // === SCROLL EFFECTS ===
-    const sections = document.querySelectorAll('.skills,.projects,.contact');
-    const observer = new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');}});},{threshold:0.2});
-    sections.forEach(s=>observer.observe(s));
+    // Fade-in animation for sections
+    const sections = document.querySelectorAll('.skills, .projects, .contact');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+    }, { threshold: 0.2 });
+    sections.forEach(section => observer.observe(section));
 
-    // === GREETING ===
-    function updateGreeting(){
-      const el=document.getElementById('realTimeGreeting');
-      const h=new Date().getHours();
-      const t=new Date().toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit',second:'2-digit',hour12:true});
-      let g=h<12?'Good morning ☀️':h<17?'Good afternoon 🌤️':'Good evening 🌙';
-      el.textContent=`${g} It’s ${t} in India.`;
+    // Greeting
+    function updateRealTimeGreeting() {
+      const el = document.getElementById('realTimeGreeting');
+      const d = new Date(); const h = d.getHours();
+      let greet = h < 12 ? "Good morning ☀️" : h < 17 ? "Good afternoon 🌤️" : "Good evening 🌙";
+      el.textContent = `${greet}. It’s ${d.toLocaleTimeString('en-US', {hour:'numeric',minute:'2-digit',second:'2-digit',hour12:true})} in India.`;
     }
-    updateGreeting(); setInterval(updateGreeting,1000);
+    updateRealTimeGreeting(); setInterval(updateRealTimeGreeting, 1000);
 
-    // === LAUNCH ANIMATION ===
-    const links=document.querySelectorAll('.project-link');const anim=document.getElementById('launch-animation');
-    links.forEach(l=>l.addEventListener('click',e=>{e.preventDefault();const u=l.href,t=l.target||'_self';anim.classList.add('show');setTimeout(()=>{anim.classList.remove('show');window.open(u,t);},2000);})); 
+    // Launch animation
+    const links = document.querySelectorAll('.project-link'); 
+    const anim = document.getElementById('launch-animation');
+    links.forEach(l => l.addEventListener('click', e => {
+      e.preventDefault(); const u = l.href, t = l.target || '_self';
+      anim.classList.add('show');
+      setTimeout(()=>{anim.classList.remove('show');window.open(u,t);},2000);
+    }));
 
-    // === DIWALI POPUP ===
-    const popup=document.getElementById('diwaliPopup');
-    const closeBtn=document.getElementById('closePopup');
-    const canvas=document.getElementById('fireworksCanvas');
-    const ctx=canvas.getContext('2d');
-    canvas.width=window.innerWidth;canvas.height=window.innerHeight;
-    let fireworks=[];
-    function random(min,max){return Math.random()*(max-min)+min;}
-    function Firework(x,y){this.x=x;this.y=y;this.s=2;this.a=1;this.color=`hsl(${Math.random()*360},100%,60%)`;this.vx=random(-3,3);this.vy=random(-5,-8);}
-    Firework.prototype.update=function(){this.x+=this.vx;this.y+=this.vy;this.vy+=0.1;this.a-=0.02;};
-    Firework.prototype.draw=function(){ctx.globalAlpha=this.a;ctx.beginPath();ctx.arc(this.x,this.y,this.s,0,Math.PI*2);ctx.fillStyle=this.color;ctx.fill();};
-    function animate(){requestAnimationFrame(animate);ctx.fillStyle='rgba(0,0,0,0.15)';ctx.fillRect(0,0,canvas.width,canvas.height);if(Math.random()<0.1){for(let i=0;i<100;i++){fireworks.push(new Firework(random(0,canvas.width),random(canvas.height/4,canvas.height/2)));}}fireworks.forEach((f,i)=>{f.update();f.draw();if(f.a<=0)fireworks.splice(i,1);});}
-    animate();
-    closeBtn.onclick=()=>{popup.style.animation='fadeOut 1s forwards';setTimeout(()=>popup.remove(),1000);};
-    setTimeout(()=>{popup.style.animation='fadeOut 1s forwards';setTimeout(()=>popup.remove(),1000);},30000);
+    // 🎇 Diwali Popup
+    const popup = document.getElementById('diwali-popup');
+    const closeBtn = document.getElementById('close-popup');
+    closeBtn.addEventListener('click', ()=> popup.style.display='none');
+    setTimeout(()=> popup.style.display='none', 30000);
   </script>
 </body>
 </html>
