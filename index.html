@@ -519,23 +519,32 @@
       setTimeout(()=>{anim.classList.remove('show');window.open(u,t);},2000);
     }));
 
-    // 🎇 diwali popup (appears on load, hides after 30s or when closed)
-    const popup = document.getElementById('diwali-popup');
-    const closeBtn = document.getElementById('close-popup');
-    let autoHideTimer; // Declare the timer variable here
+    // 🎇 ROBUST DIWALI POPUP LOGIC FIX 🎇
+    (function() {
+        const popup = document.getElementById('diwali-popup');
+        const closeBtn = document.getElementById('close-popup');
+        let autoHideTimer; 
 
-    // Function to hide the popup instantly and clear the timer
-    function hidePopup() {
-        popup.style.display = 'none';
-        // Clear the timer so it doesn't try to hide the already hidden element later
-        clearTimeout(autoHideTimer);
-    }
-    
-    // Set the auto-hide timeout and store its ID in the variable
-    autoHideTimer = setTimeout(hidePopup, 30000);
+        // Check if the popup element actually exists before trying to manipulate it
+        if (!popup) return;
 
-    // Attach the instant hide function to the close button click
-    closeBtn.addEventListener('click', hidePopup);
+        // Function to hide the popup instantly and clear the auto-hide timer
+        function hidePopup() {
+            popup.style.display = 'none';
+            if (autoHideTimer) {
+                clearTimeout(autoHideTimer); // Stop the 30-second countdown
+            }
+        }
+        
+        // 1. Attach the click event to the close button
+        if (closeBtn) {
+            closeBtn.addEventListener('click', hidePopup);
+        }
+
+        // 2. Set the auto-hide timeout and store its ID
+        autoHideTimer = setTimeout(hidePopup, 30000);
+
+    })(); // End of self-executing function
   </script>
 </body>
 </html>
