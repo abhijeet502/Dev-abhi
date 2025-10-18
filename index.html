@@ -274,14 +274,14 @@
       z-index: 1;
     }
     #diwali-popup::after {
+      /* simplified decorative layer (removed truncated svg to avoid errors) */
       content: '';
       position: absolute;
       top: 0;
       right: 0;
       width: 300px; /* adjust size */
       height: 300px; /* adjust size */
-      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="none" stroke="%23ffffff" stroke-opacity="0.1" stroke-width="2"/><circle cx="50" cy="50" r="35" fill="none" stroke="%23ffffff" stroke-opacity="0.1" stroke-width="1"/><circle cx="50" cy="50" r="25" fill="none" stroke="%23ffffff" stroke-opacity="0.1" stroke-width="0.5"/></svg>');
-      background-size: contain;
+      background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.06), transparent 60%);
       opacity: 0.3;
       transform: translate(20%, -20%) rotate(45deg); /* position and rotate for effect */
       pointer-events: none;
@@ -501,7 +501,9 @@
 
     // live clock greeting
     function updateRealTimeGreeting() {
-      const el = document.getElementById('realTimeGreeting');
+      // match the id used in the markup (realtimegreeting)
+      const el = document.getElementById('realtimegreeting');
+      if (!el) return; // guard against missing element
       const d = new Date(); const h = d.getHours();
       let greet = h < 12 ? "Good morning ☀️" : h < 17 ? "Good afternoon 🌤️" : "Good evening 🌙";
       el.textContent = `${greet}. It’s ${d.toLocaleTimeString('en-US', {hour:'numeric',minute:'2-digit',second:'2-digit',hour12:true})} in India.`;
@@ -513,19 +515,28 @@
     const anim = document.getElementById('launch-animation');
     links.forEach(l => l.addEventListener('click', e => {
       e.preventDefault(); const u = l.href, t = l.target || '_self';
-      anim.classList.add('show');
-      setTimeout(()=>{anim.classList.remove('show');window.open(u,t);},2000);
+      if (anim) anim.classList.add('show');
+      setTimeout(()=>{ if (anim) anim.classList.remove('show'); window.open(u,t);},2000);
     }));
 
     // 🎇 diwali popup (appears on load, hides after 30s or when closed)
     const popup = document.getElementById('diwali-popup');
     const closeBtn = document.getElementById('close-popup');
-    
-    // hide popup when close button is clicked
-    closeBtn.addEventListener('click', ()=> popup.style.display='none');
-    
-    // auto-hide popup after 30,000 milliseconds (30 seconds)
-    setTimeout(()=> popup.style.display='none', 30000);
+
+    // only proceed if popup exists
+    if (popup) {
+      // hide popup when close button is clicked
+      let popupTimeout = null;
+      if (closeBtn) {
+        closeBtn.addEventListener('click', ()=> {
+          popup.style.display = 'none';
+          if (popupTimeout) clearTimeout(popupTimeout);
+        });
+      }
+
+      // auto-hide popup after 30,000 milliseconds (30 seconds)
+      popupTimeout = setTimeout(()=> { popup.style.display='none'; popupTimeout = null; }, 30000);
+    }
   </script>
 </body>
 </html>
