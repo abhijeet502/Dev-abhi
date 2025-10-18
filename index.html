@@ -522,14 +522,20 @@
     // 🎇 diwali popup (appears on load, hides after 30s or when closed)
     const popup = document.getElementById('diwali-popup');
     const closeBtn = document.getElementById('close-popup');
-    
-    // 💥 FIX: The close button now correctly sets display: none 💥
-    closeBtn.addEventListener('click', () => {
+    let autoHideTimer; // Declare the timer variable here
+
+    // Function to hide the popup instantly and clear the timer
+    function hidePopup() {
         popup.style.display = 'none';
-    });
+        // Clear the timer so it doesn't try to hide the already hidden element later
+        clearTimeout(autoHideTimer);
+    }
     
-    // auto-hide popup after 30,000 milliseconds (30 seconds)
-    setTimeout(()=> popup.style.display='none', 30000);
+    // Set the auto-hide timeout and store its ID in the variable
+    autoHideTimer = setTimeout(hidePopup, 30000);
+
+    // Attach the instant hide function to the close button click
+    closeBtn.addEventListener('click', hidePopup);
   </script>
 </body>
 </html>
