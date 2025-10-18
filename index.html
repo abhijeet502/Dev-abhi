@@ -523,12 +523,9 @@
     const popup = document.getElementById('diwali-popup');
     const closeBtn = document.getElementById('close-popup');
     
-    // FIX: The event listener is now correctly attached to the 'closeBtn' variable.
-    // Hide popup when close button is clicked
+    // 💥 FIX: The close button now correctly sets display: none 💥
     closeBtn.addEventListener('click', () => {
         popup.style.display = 'none';
-        // Optional: You might want to stop the 30-second timer if the user closes it manually.
-        // For simplicity, we'll let the timeout run out harmlessly since the element is already hidden.
     });
     
     // auto-hide popup after 30,000 milliseconds (30 seconds)
