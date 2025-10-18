@@ -209,18 +209,98 @@
       0% { transform: translateY(-50px); opacity: 0; }
       100% { transform: translateY(0); opacity: 1; }
     }
+
+    /* --- PREMIUM EFFECT STYLES START (New additions to match theme) --- */
+
+    /* 1. Real-time Greeting Style */
+    #realTimeGreeting {
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: #60a5fa; /* Chosen light blue to stand out slightly but match the gradient blue */
+      margin-top: 20px;
+      opacity: 1;
+      transition: opacity 2s ease-out;
+    }
+    .greeting-fade {
+      opacity: 0 !important;
+    }
+
+    /* 2. Lex Easter Egg Style (Hidden Spot) */
+    #lex-tap-area {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 50px;
+      height: 50px;
+      cursor: pointer;
+      z-index: 100;
+    }
+
+    /* Shared Notification Style for Lex Easter Egg */
+    #lex-notification {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: linear-gradient(135deg, #a78bfa, #38bdf8); /* Uses your existing button gradient */
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: 600;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.5s ease, transform 0.5s ease;
+      transform: translateX(100%);
+      z-index: 2000;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+    }
+
+    #lex-notification.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(0);
+    }
+
+    /* 3. Launch Animation Style */
+    #launch-animation {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid #38bdf8;
+      backdrop-filter: blur(10px);
+      color: #f8fafc;
+      padding: 20px 30px;
+      border-radius: 12px;
+      font-size: 1.3rem;
+      font-weight: 600;
+      z-index: 3000;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease;
+    }
+    #launch-animation.show {
+      opacity: 1;
+      visibility: visible;
+    }
+    /* --- PREMIUM EFFECT STYLES END --- */
   </style>
 </head>
 <body>
 
-  <!-- Hero -->
+  <div id="lex-tap-area" title="Secret spot"></div>
+  <div id="lex-notification">Lex says hi 👋 — woof!</div>
+  <div id="launch-animation">🚀 Launching project...</div>
+
   <header>
     <h1>Hey, I'm Abhi 👋</h1>
+    <p id="realTimeGreeting"></p>
+
     <p>A self-learned developer exploring the world of tech 🚀</p>
     <p class="typing">11th grader | Python | JS | CSS</p>
   </header>
 
-  <!-- Skills -->
   <section>
     <div class="skills">
       <h2>What I’m Learning</h2>
@@ -232,24 +312,21 @@
       </ul>
     </div>
 
-    <!-- Projects -->
     <div class="projects">
       <h2>My Projects</h2>
       <ul>
         <li>
-          <a href="https://truth-theta.vercel.app/" target="_blank">🚀 Truth Theta</a>
+          <a href="https://truth-theta.vercel.app/" target="_blank" class="project-link">🚀 Truth Theta</a>
         </li>
         <li>🔒 Some private projects (not public yet)</li>
         <li>🔧 More projects in development…</li>
       </ul>
 
-      <!-- Writer’s Tool Button -->
-      <a href="https://abhi-quote.vercel.app/" target="_blank" class="writer-btn">
+      <a href="https://abhi-quote.vercel.app/" target="_blank" class="writer-btn project-link">
         ✍️ Explore Abhi Quotes!!
       </a>
     </div>
 
-    <!-- Note Section -->
     <div class="note" style="
       background: rgba(255,255,255,0.05);
       border-radius: 16px;
@@ -265,7 +342,6 @@
       </p>
     </div>
 
-    <!-- Contact -->
     <div class="contact">
       <h2>Let’s Connect</h2>
       <p>Wanna build something cool with me? I’ll never say no to coding.</p>
@@ -276,13 +352,12 @@
     </div>
   </section>
 
-  <!-- Footer -->
   <footer>
     © 2025 Crafted with ❤️ by Abhi
   </footer>
 
-  <!-- Scroll animation script -->
   <script>
+    // --- Existing Scroll Animation Script ---
     const sections = document.querySelectorAll('.skills, .projects, .contact');
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
@@ -293,6 +368,112 @@
     }, { threshold: 0.2 });
 
     sections.forEach(section => observer.observe(section));
+
+    // --- 1. Real-time Greeting Script ---
+    function initRealTimeGreeting() {
+      const greetingElement = document.getElementById('realTimeGreeting');
+      const date = new Date();
+      const hour = date.getHours();
+      let greeting;
+
+      // Determine greeting based on the hour (24-hour clock)
+      if (hour < 12) {
+        greeting = "Good morning ☀️";
+      } else if (hour < 17) {
+        greeting = "Good afternoon 🌤️";
+      } else {
+        greeting = "Good evening 🌙";
+      }
+
+      // Format time using the current date
+      const timeOptions = { hour: 'numeric', minute: '2-digit', hour12: true };
+      const timeString = date.toLocaleTimeString('en-US', timeOptions);
+      
+      // Since the current time is 3:29:51 PM IST, we'll use "India" as requested in the example.
+      const location = "India"; 
+
+      greetingElement.textContent = `${greeting} Abhi! It’s ${timeString} in ${location}.`;
+      
+      // Fade out after 30 seconds
+      setTimeout(() => {
+        greetingElement.classList.add('greeting-fade');
+      }, 30000); 
+    }
+    
+    // Call the function when the page loads
+    window.addEventListener('load', initRealTimeGreeting);
+
+
+    // --- 2. Lex Easter Egg Script ---
+    function showLexMessage() {
+      const notification = document.getElementById('lex-notification');
+      if (notification.classList.contains('show')) return; 
+
+      notification.classList.add('show');
+
+      // Hide after 4 seconds
+      setTimeout(() => {
+        notification.classList.remove('show');
+      }, 4000); 
+    }
+
+    // A. Console/Typing Listener
+    let consoleKeyBuffer = '';
+    const targetWord = 'lex';
+
+    document.addEventListener('keydown', (e) => {
+      // Don't trigger if an input field is focused
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return; 
+
+      const key = e.key.toLowerCase();
+      if (key.length === 1 && key.match(/[a-z0-9]/)) {
+        consoleKeyBuffer += key;
+        
+        if (consoleKeyBuffer.length > targetWord.length) {
+          consoleKeyBuffer = consoleKeyBuffer.slice(-targetWord.length);
+        }
+
+        if (consoleKeyBuffer === targetWord) {
+          showLexMessage();
+          console.log('Lex says hi 👋 — woof!'); 
+          consoleKeyBuffer = ''; 
+        }
+      } else {
+        // Reset buffer if a non-typing key is pressed
+        consoleKeyBuffer = '';
+      }
+    });
+
+    // B. Hidden Tap/Click Spot Listener
+    document.getElementById('lex-tap-area').addEventListener('click', showLexMessage);
+
+
+    // --- 3. Launch Animation Script ---
+    // Target all project links including the special writer button (by adding the class 'project-link' to it)
+    const projectLinks = document.querySelectorAll('.project-link'); 
+    const launchAnimation = document.getElementById('launch-animation');
+
+    projectLinks.forEach(link => {
+      link.addEventListener('click', function(e) {
+        // Prevent immediate navigation
+        e.preventDefault();
+        
+        const targetUrl = this.href;
+        const targetWindow = this.target || '_self';
+
+        // 1. Show the animation
+        launchAnimation.classList.add('show');
+
+        // 2. Wait 2 seconds (2000 milliseconds)
+        setTimeout(() => {
+          // 3. Hide the animation
+          launchAnimation.classList.remove('show');
+
+          // 4. Navigate to the link
+          window.open(targetUrl, targetWindow);
+        }, 2000); 
+      });
+    });
   </script>
 
 </body>
