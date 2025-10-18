@@ -328,8 +328,8 @@
 
     sections.forEach(section => observer.observe(section));
 
-    // --- 1. Real-time Greeting Script (Permanent, Non-personalized) ---
-    function initRealTimeGreeting() {
+    // --- 1. Real-time Greeting Script (Now Live Clock) ---
+    function updateRealTimeGreeting() {
       const greetingElement = document.getElementById('realTimeGreeting');
       const date = new Date();
       const hour = date.getHours();
@@ -345,7 +345,7 @@
       }
 
       // Format time
-      const timeOptions = { hour: 'numeric', minute: '2-digit', hour12: true };
+      const timeOptions = { hour: 'numeric', minute: '2-digit', second: '2-digit', hour12: true };
       const timeString = date.toLocaleTimeString('en-US', timeOptions); 
       
       const location = "India"; 
@@ -354,8 +354,11 @@
       greetingElement.textContent = `${greeting}. It’s ${timeString} in ${location}.`;
     }
     
-    // Call the function when the page loads
-    window.addEventListener('load', initRealTimeGreeting);
+    // 1. Call it immediately once to set the initial time
+    updateRealTimeGreeting();
+    
+    // 2. Set an interval to update the time every 1000 milliseconds (1 second)
+    setInterval(updateRealTimeGreeting, 1000);
 
 
     // --- 3. Launch Animation Script ---
