@@ -210,54 +210,15 @@
       100% { transform: translateY(0); opacity: 1; }
     }
 
-    /* --- PREMIUM EFFECT STYLES START (New additions to match theme) --- */
+    /* --- PREMIUM EFFECT STYLES START --- */
 
-    /* 1. Real-time Greeting Style */
+    /* 1. Real-time Greeting Style (Permanent) */
     #realTimeGreeting {
       font-size: 1.1rem;
       font-weight: 500;
-      color: #60a5fa; /* Chosen light blue to stand out slightly but match the gradient blue */
+      color: #60a5fa; 
       margin-top: 20px;
       opacity: 1;
-      transition: opacity 2s ease-out;
-    }
-    .greeting-fade {
-      opacity: 0 !important;
-    }
-
-    /* 2. Lex Easter Egg Style (Hidden Spot) */
-    #lex-tap-area {
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 50px;
-      height: 50px;
-      cursor: pointer;
-      z-index: 100;
-    }
-
-    /* Shared Notification Style for Lex Easter Egg */
-    #lex-notification {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background: linear-gradient(135deg, #a78bfa, #38bdf8); /* Uses your existing button gradient */
-      color: #fff;
-      padding: 10px 20px;
-      border-radius: 8px;
-      font-weight: 600;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.5s ease, transform 0.5s ease;
-      transform: translateX(100%);
-      z-index: 2000;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.4);
-    }
-
-    #lex-notification.show {
-      opacity: 1;
-      visibility: visible;
-      transform: translateX(0);
     }
 
     /* 3. Launch Animation Style */
@@ -288,9 +249,7 @@
   </style>
 </head>
 <body>
-
-  <div id="lex-tap-area" title="Secret spot"></div>
-  <div id="lex-notification">Lex says hi 👋 — woof!</div>
+  
   <div id="launch-animation">🚀 Launching project...</div>
 
   <header>
@@ -369,7 +328,7 @@
 
     sections.forEach(section => observer.observe(section));
 
-    // --- 1. Real-time Greeting Script ---
+    // --- 1. Real-time Greeting Script (Permanent, Non-personalized) ---
     function initRealTimeGreeting() {
       const greetingElement = document.getElementById('realTimeGreeting');
       const date = new Date();
@@ -385,71 +344,21 @@
         greeting = "Good evening 🌙";
       }
 
-      // Format time using the current date
+      // Format time
       const timeOptions = { hour: 'numeric', minute: '2-digit', hour12: true };
-      const timeString = date.toLocaleTimeString('en-US', timeOptions);
+      const timeString = date.toLocaleTimeString('en-US', timeOptions); 
       
-      // Since the current time is 3:29:51 PM IST, we'll use "India" as requested in the example.
       const location = "India"; 
 
-      greetingElement.textContent = `${greeting} Abhi! It’s ${timeString} in ${location}.`;
-      
-      // Fade out after 30 seconds
-      setTimeout(() => {
-        greetingElement.classList.add('greeting-fade');
-      }, 30000); 
+      // Final output format
+      greetingElement.textContent = `${greeting}. It’s ${timeString} in ${location}.`;
     }
     
     // Call the function when the page loads
     window.addEventListener('load', initRealTimeGreeting);
 
 
-    // --- 2. Lex Easter Egg Script ---
-    function showLexMessage() {
-      const notification = document.getElementById('lex-notification');
-      if (notification.classList.contains('show')) return; 
-
-      notification.classList.add('show');
-
-      // Hide after 4 seconds
-      setTimeout(() => {
-        notification.classList.remove('show');
-      }, 4000); 
-    }
-
-    // A. Console/Typing Listener
-    let consoleKeyBuffer = '';
-    const targetWord = 'lex';
-
-    document.addEventListener('keydown', (e) => {
-      // Don't trigger if an input field is focused
-      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return; 
-
-      const key = e.key.toLowerCase();
-      if (key.length === 1 && key.match(/[a-z0-9]/)) {
-        consoleKeyBuffer += key;
-        
-        if (consoleKeyBuffer.length > targetWord.length) {
-          consoleKeyBuffer = consoleKeyBuffer.slice(-targetWord.length);
-        }
-
-        if (consoleKeyBuffer === targetWord) {
-          showLexMessage();
-          console.log('Lex says hi 👋 — woof!'); 
-          consoleKeyBuffer = ''; 
-        }
-      } else {
-        // Reset buffer if a non-typing key is pressed
-        consoleKeyBuffer = '';
-      }
-    });
-
-    // B. Hidden Tap/Click Spot Listener
-    document.getElementById('lex-tap-area').addEventListener('click', showLexMessage);
-
-
     // --- 3. Launch Animation Script ---
-    // Target all project links including the special writer button (by adding the class 'project-link' to it)
     const projectLinks = document.querySelectorAll('.project-link'); 
     const launchAnimation = document.getElementById('launch-animation');
 
