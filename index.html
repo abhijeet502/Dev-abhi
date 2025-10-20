@@ -1,16 +1,16 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Abhi | Portfolio</title>
   <style>
-    /* reset + theme */
+    /* Reset + Theme */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'segoe ui', tahoma, geneva, verdana, sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
     body {
@@ -20,11 +20,11 @@
       overflow-x: hidden;
     }
 
-    /* header */
+    /* Header */
     header {
       text-align: center;
       padding: 100px 20px 60px;
-      animation: fadedown 1.5s ease-in-out;
+      animation: fadeDown 1.5s ease-in-out;
     }
 
     header h1 {
@@ -42,7 +42,7 @@
       color: #cbd5e1;
     }
 
-    /* typing effect */
+    /* Typing effect */
     .typing {
       margin-top: 25px;
       font-size: 1.2rem;
@@ -65,6 +65,7 @@
       50% { border-color: transparent; }
     }
 
+    /* Section */
     section {
       max-width: 900px;
       margin: 0 auto;
@@ -91,6 +92,7 @@
       transform: translateY(30px);
     }
 
+    /* Fade in animation when visible */
     .visible {
       opacity: 1 !important;
       transform: translateY(0) !important;
@@ -120,6 +122,7 @@
       color: #38bdf8;
     }
 
+    /* Project links (button-like) */
     .projects a {
       display: inline-block;
       padding: 12px 18px;
@@ -145,6 +148,7 @@
       box-shadow: 0 6px 18px rgba(0,0,0,0.35);
     }
 
+    /* Special Writer Button */
     .writer-btn {
       display: inline-block;
       margin-top: 25px;
@@ -167,6 +171,7 @@
       opacity: 0.95;
     }
 
+    /* Contact buttons */
     .contact a {
       display: inline-block;
       padding: 12px 25px;
@@ -200,13 +205,15 @@
       border-top: 1px solid rgba(255,255,255,0.1);
     }
 
-    @keyframes fadedown {
+    @keyframes fadeDown {
       0% { transform: translateY(-50px); opacity: 0; }
       100% { transform: translateY(0); opacity: 1; }
     }
 
-    /* permanent clock style */
-    #realtimegreeting {
+    /* --- PREMIUM EFFECT STYLES START --- */
+
+    /* 1. Real-time Greeting Style (Permanent) */
+    #realTimeGreeting {
       font-size: 1.1rem;
       font-weight: 500;
       color: #60a5fa; 
@@ -214,7 +221,7 @@
       opacity: 1;
     }
 
-    /* simple launch animation style (restored) */
+    /* 3. Launch Animation Style */
     #launch-animation {
       position: fixed;
       top: 50%;
@@ -238,305 +245,149 @@
       opacity: 1;
       visibility: visible;
     }
-
-    /* ✨ diwali popup styles (based on image) ✨ */
-    #diwali-popup {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      /* background gradient from the image */
-      background: linear-gradient(to right, #8a2387, #e94057, #f27121); 
-      color: #fff;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      z-index: 4000;
-      animation: fadein 1s ease forwards;
-      overflow: hidden; /* important for positioned diyas */
-    }
-
-    /* the glowing mandala-like pattern in the top-right */
-    #diwali-popup::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 400px; /* adjust size */
-      height: 400px; /* adjust size */
-      background: radial-gradient(circle at 70% 30%, rgba(255, 255, 255, 0.1), transparent 70%);
-      border-radius: 50%;
-      transform: translate(20%, -20%);
-      pointer-events: none;
-      z-index: 1;
-    }
-    #diwali-popup::after {
-      /* simplified decorative layer (removed truncated svg to avoid errors) */
-      content: '';
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 300px; /* adjust size */
-      height: 300px; /* adjust size */
-      background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.06), transparent 60%);
-      opacity: 0.3;
-      transform: translate(20%, -20%) rotate(45deg); /* position and rotate for effect */
-      pointer-events: none;
-      z-index: 1;
-    }
-
-
-    /* diyas styling for the popup */
-    .diwali-diyas-container {
-      position: absolute;
-      bottom: 20px; /* position them at the bottom left */
-      left: 20px;
-      display: flex;
-      gap: 20px;
-      z-index: 2; /* ensure diyas are above background effects */
-    }
-
-    .diwali-diya {
-      position: relative;
-      width: 100px; /* diya base width */
-      height: 50px; /* diya base height */
-      background-color: #fdd835; /* golden color for diya base */
-      border-radius: 0 0 50px 50px / 0 0 25px 25px; /* half-ellipse shape */
-      box-shadow: inset 0 -5px 10px rgba(0, 0, 0, 0.3); /* inner shadow for depth */
-      transform: rotate(-10deg); /* slight tilt */
-    }
-    .diwali-diya:nth-child(2) { transform: rotate(0deg); } /* middle diya straight */
-    .diwali-diya:nth-child(3) { transform: rotate(10deg); } /* right diya slight tilt */
-
-
-    .diwali-wick {
-      position: absolute;
-      top: -20px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 8px;
-      height: 25px;
-      background-color: #a0522d; /* brown color for wick */
-      border-radius: 50%;
-      box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-    }
-
-    .diwali-flame {
-      position: absolute;
-      top: -45px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 30px;
-      height: 40px;
-      background: radial-gradient(circle at 50% 0, #ffeb3b, #ff9800, #f44336); /* realistic flame gradient */
-      border-radius: 50% 50% 30% 30%;
-      filter: blur(3px); /* soften the flame edges */
-      animation: diwali-flicker 1.5s infinite alternate ease-in-out;
-      box-shadow: 0 0 18px 6px rgba(255, 200, 0, 0.9), /* inner glow */
-                  0 0 35px 12px rgba(255, 165, 0, 0.7); /* outer glow */
-    }
-
-    @keyframes diwali-flicker {
-      0%, 100% { transform: translateX(-50%) scale(1); opacity: 1; }
-      25% { transform: translateX(-52%) scale(0.98); opacity: 0.95; }
-      50% { transform: translateX(-48%) scale(1.02); opacity: 1; }
-      75% { transform: translateX(-51%) scale(0.99); opacity: 0.97; }
-    }
-
-
-    /* text styling for the popup */
-    #diwali-popup h1 {
-      font-size: 4rem; /* larger for impact */
-      background: linear-gradient(to right, #ffe082, #ffb300, #ff5722); /* gold/orange gradient for text */
-      -webkit-background-clip: text;
-      color: transparent;
-      animation: pulse 2s infinite;
-      text-shadow: 0 0 20px rgba(255, 165, 0, 0.8); /* glow effect for text */
-      margin-top: -100px; /* lift caption up, away from diyas */
-      z-index: 2;
-      position: relative; /* to make z-index work */
-    }
-
-    #diwali-popup p {
-      margin-top: 20px; /* more space */
-      font-size: 1.5rem;
-      color: #ffecb3; /* lighter color */
-      text-shadow: 0 0 8px rgba(255, 255, 255, 0.5); /* subtle glow */
-      z-index: 2;
-      position: relative;
-    }
-    
-    /* new line added to p tag */
-    #diwali-popup .new-line {
-        display: block;
-        margin-top: 10px;
-        font-size: 1.1rem;
-        color: #ffcc80;
-    }
-
-
-    #close-popup {
-      position: absolute; /* position close button top-right */
-      top: 20px;
-      right: 20px;
-      margin-top: 0; /* override default margin */
-      padding: 10px 15px;
-      background: rgba(255,255,255,0.2); /* semi-transparent background */
-      border: 1px solid rgba(255,255,255,0.3);
-      color: white;
-      border-radius: 50%; /* make it round */
-      font-weight: 600;
-      cursor: pointer;
-      transition: background 0.3s ease, transform 0.3s ease;
-      font-size: 1rem;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-      z-index: 5; /* ensure it's on top */
-    }
-
-    #close-popup:hover {
-      background: rgba(255,255,255,0.4);
-      transform: scale(1.1) rotate(90deg); /* spin on hover */
-    }
-
-    @keyframes fadein {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-    }
+    /* --- PREMIUM EFFECT STYLES END --- */
   </style>
 </head>
 <body>
-
   
-<div id="diwali-popup">
-    
-<div class="diwali-diyas-container">
-      <div class="diwali-diya">
-        <div class="diwali-wick"></div>
-        <div class="diwali-flame"></div>
-      </div>
-      <div class="diwali-diya">
-        <div class="diwali-wick"></div>
-        <div class="diwali-flame"></div>
-      </div>
-      <div class="diwali-diya">
-        <div class="diwali-wick"></div>
-        <div class="diwali-flame"></div>
-      </div>
-    </div>
-    
-    <h1>Happy Diwali</h1>
-    <p>
-      Wishing you joy, light & prosperity.<br>
-      Best and warm wishes by Abhijeet 💖
-      <span class="new-line">“The development projects are just getting their final touch 😉”</span>
-    </p>
-    <button id="close-popup">❌</button>
-  </div>
-
-  
-<div id="launch-animation">🚀 launching project...</div>
+  <div id="launch-animation">🚀 Launching project...</div>
 
   <header>
-    <h1>Hey, I'm abhi 👋</h1>
-    <p id="realtimegreeting"></p>
+    <h1>Hey, I'm Abhi 👋</h1>
+    <p id="realTimeGreeting"></p>
+
     <p>A self-learned developer exploring the world of tech 🚀</p>
-    <p class="typing">11th grader | python | js | css</p>
+    <p class="typing">11th grader | Python | JS | CSS</p>
   </header>
 
   <section>
     <div class="skills">
-      <h2>What i’m learning</h2>
+      <h2>What I’m Learning</h2>
       <ul>
-        <li>python – basics, small scripts, problem solving</li>
-        <li>javascript – fundamentals, dom, interactivity</li>
-        <li>css – layouts, styling, still in progress 🎨</li>
-        <li>exploring web development projects step by step</li>
+        <li>Python – basics, small scripts, problem solving</li>
+        <li>JavaScript – fundamentals, DOM, interactivity</li>
+        <li>CSS – layouts, styling, still in progress 🎨</li>
+        <li>Exploring web development projects step by step</li>
       </ul>
     </div>
 
     <div class="projects">
-      <h2>My projects</h2>
+      <h2>My Projects</h2>
       <ul>
-        <li><a href="https://truth-theta.vercel.app/" target="_blank" class="project-link">🚀 truth theta</a></li>
-        <li>🔒 some private projects (not public yet)</li>
-        <li>🔧 more projects in development…</li>
+        <li>
+          <a href="https://truth-theta.vercel.app/" target="_blank" class="project-link">🚀 Truth Theta</a>
+        </li>
+        <li>🔒 Some private projects (not public yet)</li>
+        <li>🔧 More projects in development…</li>
       </ul>
-      <a href="https://abhi-quote.vercel.app/" target="_blank" class="writer-btn project-link">✍️ explore abhi quotes!!</a>
+
+      <a href="https://abhi-quote.vercel.app/" target="_blank" class="writer-btn project-link">
+        ✍️ Explore Abhi Quotes!!
+      </a>
     </div>
 
-    <div class="note" style="background: rgba(255,255,255,0.05);border-radius: 16px;padding: 20px;margin-bottom: 40px;backdrop-filter: blur(12px);box-shadow: 0 8px 25px rgba(0,0,0,0.3);text-align: center;">
+    <div class="note" style="
+      background: rgba(255,255,255,0.05);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 40px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+      text-align: center;
+    ">
       <p style="font-size: 1rem; color: #94a3b8; line-height: 1.6;">
-        ⚡ note: quick maintenance break ⛓️‍💥 adding new features and working on web stability—11th grader on the job, bruhh 🫡. this will go on for 5 to 6 hours, started from 3:00 pm..!
-          <br>~abhijeet / abhi 🙂
+        ⚡ note: Happy Diwali! 🎇✨🪔 Wishing you the best and warmest wishes from Abhijeet..!
+(The development projects are just getting their final touches 😉).
+         <br>~abhijeet / abhi 🙂
       </p>
     </div>
 
     <div class="contact">
-      <h2>Let’s connect</h2>
-      <p>wanna build something cool with me? i’ll never say no to coding.</p>
+      <h2>Let’s Connect</h2>
+      <p>Wanna build something cool with me? I’ll never say no to coding.</p>
       <div class="button-group">
-        <a href="https://instagram.com/__abhiiii_92" target="_blank">📸 connect on instagram(1)</a>
-        <a href="https://instagram.com/_abhijeet_92" target="_blank">📸 connect on instagram(2)</a>
+        <a href="https://instagram.com/__abhiiii_92" target="_blank">📸 Connect on Instagram(1)</a>
+        <a href="https://instagram.com/_abhijeet_92" target="_blank">📸 Connect on Instagram(2)</a>
       </div>
     </div>
   </section>
 
-  <footer>© 2025 crafted with ❤️ by abhi</footer>
+  <footer>
+    © 2025 Crafted with ❤️ by Abhi
+  </footer>
 
   <script>
-    // fade-in animation for sections
+    // --- Existing Scroll Animation Script ---
     const sections = document.querySelectorAll('.skills, .projects, .contact');
     const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
     }, { threshold: 0.2 });
+
     sections.forEach(section => observer.observe(section));
 
-    // live clock greeting
+    // --- 1. Real-time Greeting Script (Now Live Clock) ---
     function updateRealTimeGreeting() {
-      // match the id used in the markup (realtimegreeting)
-      const el = document.getElementById('realtimegreeting');
-      if (!el) return; // guard against missing element
-      const d = new Date(); const h = d.getHours();
-      let greet = h < 12 ? "Good morning ☀️" : h < 17 ? "Good afternoon 🌤️" : "Good evening 🌙";
-      el.textContent = `${greet}. It’s ${d.toLocaleTimeString('en-US', {hour:'numeric',minute:'2-digit',second:'2-digit',hour12:true})} in India.`;
-    }
-    updateRealTimeGreeting(); setInterval(updateRealTimeGreeting, 1000);
+      const greetingElement = document.getElementById('realTimeGreeting');
+      const date = new Date();
+      const hour = date.getHours();
+      let greeting;
 
-    // launch animation (simple version)
-    const links = document.querySelectorAll('.project-link'); 
-    const anim = document.getElementById('launch-animation');
-    links.forEach(l => l.addEventListener('click', e => {
-      e.preventDefault(); const u = l.href, t = l.target || '_self';
-      if (anim) anim.classList.add('show');
-      setTimeout(()=>{ if (anim) anim.classList.remove('show'); window.open(u,t);},2000);
-    }));
-
-    // 🎇 diwali popup (appears on load, hides after 30s or when closed)
-    const popup = document.getElementById('diwali-popup');
-    const closeBtn = document.getElementById('close-popup');
-
-    // only proceed if popup exists
-    if (popup) {
-      // hide popup when close button is clicked
-      let popupTimeout = null;
-      if (closeBtn) {
-        closeBtn.addEventListener('click', ()=> {
-          popup.style.display = 'none';
-          if (popupTimeout) clearTimeout(popupTimeout);
-        });
+      // Determine greeting based on the hour (24-hour clock)
+      if (hour < 12) {
+        greeting = "Good morning ☀️";
+      } else if (hour < 17) {
+        greeting = "Good afternoon 🌤️";
+      } else {
+        greeting = "Good evening 🌙";
       }
 
-      // auto-hide popup after 30,000 milliseconds (30 seconds)
-      popupTimeout = setTimeout(()=> { popup.style.display='none'; popupTimeout = null; }, 30000);
+      // Format time
+      const timeOptions = { hour: 'numeric', minute: '2-digit', second: '2-digit', hour12: true };
+      const timeString = date.toLocaleTimeString('en-US', timeOptions); 
+      
+      const location = "India"; 
+
+      // Final output format
+      greetingElement.textContent = `${greeting}. It’s ${timeString} in ${location}.`;
     }
+    
+    // 1. Call it immediately once to set the initial time
+    updateRealTimeGreeting();
+    
+    // 2. Set an interval to update the time every 1000 milliseconds (1 second)
+    setInterval(updateRealTimeGreeting, 1000);
+
+
+    // --- 3. Launch Animation Script ---
+    const projectLinks = document.querySelectorAll('.project-link'); 
+    const launchAnimation = document.getElementById('launch-animation');
+
+    projectLinks.forEach(link => {
+      link.addEventListener('click', function(e) {
+        // Prevent immediate navigation
+        e.preventDefault();
+        
+        const targetUrl = this.href;
+        const targetWindow = this.target || '_self';
+
+        // 1. Show the animation
+        launchAnimation.classList.add('show');
+
+        // 2. Wait 2 seconds (2000 milliseconds)
+        setTimeout(() => {
+          // 3. Hide the animation
+          launchAnimation.classList.remove('show');
+
+          // 4. Navigate to the link
+          window.open(targetUrl, targetWindow);
+        }, 2000); 
+      });
+    });
   </script>
+
 </body>
 </html>
